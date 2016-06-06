@@ -7,7 +7,7 @@ nightmare
   .click('form[action="/search"] [type=submit]')
   .wait('#resultStats')
   .evaluate(function () {
-    return document.querySelector('#resultStats').href
+    return document.querySelector('#resultStats').innerHTML;
   })
   .end()
   .then(function (result) {
