@@ -3,11 +3,11 @@ var nightmare = Nightmare({ show: true })
 
 nightmare
   .goto('http://google.com')
-  .type('form[action="/search"] [name=q]', 'captain 401k')
-  .click('form[action="/search"] [type=submit]')
+  .type('form[action*="/search"] [name=q]', 'github nightmare')
+  .click('form[action*="/search"] [type=submit]')
   .wait('#resultStats')
   .evaluate(function () {
-    return document.querySelector('#resultStats').href
+    return document.querySelector('#resultStats')
   })
   .end()
   .then(function (result) {
