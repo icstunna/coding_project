@@ -11,7 +11,10 @@ nightmare
   })
   .end()
   .then(function (result) {
-    console.log(result)
+    var re = /\d\d\d,\d\d\d/;
+    var k = result.match(re)
+    var test = {"number_of_results":k[0]}
+    console.log(test)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
