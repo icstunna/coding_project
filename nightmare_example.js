@@ -8,13 +8,17 @@ nightmare
   .click('form[action="/search"] [type=submit]')
   .wait('#resultStats')
   .evaluate(function () {
-    return document.querySelector('#resultStats').innerHTML;
+    var returnList = []
+    returnList.push(document.querySelector('#resultStats').innerHTML);
+    returnList.push(document.querySelector('h3 > a').innerHTML);
+    return returnList
   })
   .end()
   .then(function (result) {
     var regex = /\d\d\d,\d\d\d/;
-    var intString = result.match(regex)[0]
+    var intString = result[0].match(regex)[0]
     output["number_of_results"] = intString
+    output["the_rest"] = result
     console.log(output)
   })
   .catch(function (error) {
