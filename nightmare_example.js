@@ -18,8 +18,11 @@ nightmare
     var regex = /\d\d\d,\d\d\d/;
     var intString = result[0].match(regex)[0]
     output["number_of_results"] = intString
-    output["the_rest"] = result
-    console.log(output)
+    output["title_of_search_results"] = result
+    // console.log(output)
+    for(i = 0; i < result.length; i++) {
+      console.log(result[i])
+    }
   })
   .catch(function (error) {
     console.error('Search failed:', error);
