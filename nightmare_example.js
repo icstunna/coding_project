@@ -1,5 +1,6 @@
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: true })
+var nightmare = Nightmare({ show: true });
+var output = new Object();
 
 nightmare
   .goto('http://google.com')
@@ -11,10 +12,10 @@ nightmare
   })
   .end()
   .then(function (result) {
-    var re = /\d\d\d,\d\d\d/;
-    var k = result.match(re)
-    var test = {"number_of_results":k[0]}
-    console.log(test)
+    var regex = /\d\d\d,\d\d\d/;
+    var intString = result.match(regex)[0]
+    output["number_of_results"] = intString
+    console.log(output)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
