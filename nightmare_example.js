@@ -23,11 +23,11 @@ nightmare
   })
   .end()
   .then(function (result) {
-    // var regex = /\d\d\d,\d\d\d/;
-    // var intString = result[0].match(regex)[0]
-    // output["number_of_results"] = intString
-    // output["the_rest"] = result
-    console.log(result)
+    var regex = /\d\d\d,\d\d\d/;
+    var intString = result[0].match(regex)[0]
+    output["number_of_results"] = intString
+    output['title_of_search_results'] = result[1]
+    console.log(output)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
