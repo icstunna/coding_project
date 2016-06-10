@@ -11,10 +11,10 @@ nightmare
     var returnList = []
     var titles = []
     returnList.push(document.querySelector('#resultStats').innerHTML);
-    titles.push(document.querySelector('.r > a').innerHTML)
-    var titlesPartTwo = document.querySelector('.srg').children;
+    titles.push(document.querySelector('.r > a').innerHTML); //the first title is unaccessible by conventional means
+    var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container for remaining search results
     for (i = 0; i < titlesPartTwo.length; i++) {
-      var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML
+      var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML //this accesses the titles
       titles.push(html)
     }
 
@@ -25,7 +25,7 @@ nightmare
   .then(function (result) {
     var regex = /\d\d\d,\d\d\d/;
     var intString = result[0].match(regex)[0]
-    output["number_of_results"] = intString
+    output['number_of_results'] = intString
     output['title_of_search_results'] = result[1]
     console.log(output)
   })
