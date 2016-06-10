@@ -9,8 +9,16 @@ nightmare
   .wait('#resultStats')
   .evaluate(function () {
     var returnList = []
+    var titles = []
     returnList.push(document.querySelector('#resultStats').innerHTML);
-    returnList.push(document.querySelector('.srg').children);
+    titles.push(document.querySelector('.r > a').innerHTML)
+    var titlesPartTwo = document.querySelector('.srg').children;
+    for (i = 0; i < titlesPartTwo.length; i++) {
+      var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML
+      titles.push(html)
+    }
+
+    returnList.push(titles)
     return returnList
   })
   .end()
