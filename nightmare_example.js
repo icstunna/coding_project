@@ -26,17 +26,24 @@ function page1() {
     returnList.push(titles)
     return returnList
   })
+  .click('.pn')
+  .evaluate(function() {
+    var x = []
+    x.push(document.querySelector('.r > a').innerHTML);
+    return x
+  })
   .end()
   .then(function (result) {
-    var regex = /\d\d\d,\d\d\d/;
-    var intString = result[0].match(regex)[0]
-    output['number_of_results'] = intString
-    output['title_of_search_results'] = result[1]
-    // console.log(output)
-    // var x = JSON.stringify(output)
-    jsonfile.writeFile(file, output, function(err) {
-      console.log(err)
-    })
+    // var regex = /\d\d\d,\d\d\d/;
+    // var intString = result[0].match(regex)[0]
+    // output['number_of_results'] = intString
+    // output['title_of_search_results'] = result[1]
+    // // console.log(output)
+    // // var x = JSON.stringify(output)
+    // jsonfile.writeFile(file, output, function(err) {
+    //   console.log(err)
+    // })
+    console.log(result)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
