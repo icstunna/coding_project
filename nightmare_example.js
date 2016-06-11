@@ -32,10 +32,7 @@ function run() {
     var intString = result[0].match(regex)[0]
     output['number_of_results'] = intString
     output['title_of_search_results'] = result[1]
-    var json_output = JSON.stringify(output)
-    jsonfile.writeFile(file, json_output, function(err) {
-      console.log(err)
-    })
+    jsonfile.writeFile(file, output)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
