@@ -26,6 +26,17 @@ function run() {
     returnList.push(titles)
     return returnList
   })
+  // .click('.pn')
+  // .wait('#resultStats')
+  // .evaluate(function() {
+  //   titles = []
+  //   var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container of search results
+  //   for (i = 0; i < titlesPartTwo.length; i++) {
+  //     var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML //this accesses the titles
+  //     titles.push(html)
+  //   }
+  //   return titles
+  // })
   .end()
   .then(function (result) {
     var regex = /\d\d\d,\d\d\d/;
