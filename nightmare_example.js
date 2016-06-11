@@ -1,5 +1,7 @@
 var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: true });
+var jsonfile = require('jsonfile');
+var file = './data.json'
 var output = new Object();
 
 
@@ -30,8 +32,11 @@ function page1() {
     var intString = result[0].match(regex)[0]
     output['number_of_results'] = intString
     output['title_of_search_results'] = result[1]
-    console.log(output)
-    var x = JSON.stringify(output)
+    // console.log(output)
+    // var x = JSON.stringify(output)
+    jsonfile.writeFile(file, output, function(err) {
+      console.log(err)
+    })
   })
   .catch(function (error) {
     console.error('Search failed:', error);
