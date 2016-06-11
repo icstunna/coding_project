@@ -2,14 +2,17 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: true });
 var output = new Object();
 
-nightmare
+
+
+function page1() {
+  nightmare
   .goto('http://google.com')
   .type('form[action="/search"] [name=q]', 'captain 401k')
   .click('form[action="/search"] [type=submit]')
   .wait('#resultStats')
   .evaluate(function () {
-    var returnList = []
-    var titles = []
+    var returnList = [];
+    var titles = [];
     returnList.push(document.querySelector('#resultStats').innerHTML);
     titles.push(document.querySelector('.r > a').innerHTML); //the first title is unaccessible by conventional means
     var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container for remaining search results
@@ -28,7 +31,11 @@ nightmare
     output['number_of_results'] = intString
     output['title_of_search_results'] = result[1]
     console.log(output)
+    var x = JSON.stringify(output)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
   });
+}
+
+page1();
