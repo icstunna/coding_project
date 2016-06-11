@@ -3,6 +3,7 @@ var nightmare = Nightmare({ show: true });
 var jsonfile = require('jsonfile');
 var file = './data.json'
 var output = new Object();
+// var returnList = new Array();
 
 
 
@@ -27,10 +28,16 @@ function page1() {
     return returnList
   })
   .click('.pn')
+  .wait('#resultStats')
   .evaluate(function() {
-    var x = []
-    x.push(document.querySelector('.r > a').innerHTML);
-    return x
+    var titles = []
+    var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container for remaining search results
+    for (i = 0; i < titlesPartTwo.length; i++) {
+      var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML //this accesses the titles
+      titles.push(html)
+    }
+
+    return titles
   })
   .end()
   .then(function (result) {
