@@ -2,11 +2,12 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: true });
 var jsonfile = require('jsonfile');
 var file = './data.json'
-var output = new Object();
-var scrapeResults = new Array();
 
 
 function run() {
+  var output = new Object();
+  var scrapeResults = new Array();
+
   nightmare
   .goto('http://google.com')
   .type('form[action="/search"] [name=q]', 'captain 401k')
