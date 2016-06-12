@@ -5,17 +5,16 @@ var file = './data.json'
 var output = new Object();
 
 
-
 function run() {
+  var list = []
   nightmare
   .goto('http://google.com')
   .type('form[action="/search"] [name=q]', 'captain 401k')
   .click('form[action="/search"] [type=submit]')
   .wait('#resultStats')
-  .evaluate(function () {
-    var returnList = [];
+  .evaluate(function (list) {
     var titles = [];
-    returnList.push(document.querySelector('#resultStats').innerHTML);
+    list.push(document.querySelector('#resultStats').innerHTML);
     titles.push(document.querySelector('.r > a').innerHTML); //the first title is unaccessible otherwise
     var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container of search results
     for (i = 0; i < titlesPartTwo.length; i++) {
@@ -23,20 +22,19 @@ function run() {
       titles.push(html)
     }
 
-    returnList.push(titles)
-    return returnList
-  })
+    list.push(titles)
+    return list
+  }, list)
   // .click('.pn')
   // .wait(1000)
-  // .evaluate(function() {
-  //   titles = []
+  // .evaluate(function(list) {
   //   var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container of search results
   //   for (i = 0; i < titlesPartTwo.length; i++) {
   //     var html = titlesPartTwo[i].children[0].children[0].children[0].innerHTML //this accesses the titles
-  //     titles.push(html)
+  //     list.push(html)
   //   }
-  //   return titles
-  // })
+  //   return list
+  // }, list)
   .end()
   .then(function (result) {
     var regex = /\d\d\d,\d\d\d/;
