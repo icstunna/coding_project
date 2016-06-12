@@ -27,7 +27,7 @@ function run() {
     return returnList
   })
   // .click('.pn')
-  // .wait('#resultStats')
+  // .wait(1000)
   // .evaluate(function() {
   //   titles = []
   //   var titlesPartTwo = document.querySelector('.srg').children; //this grabs the container of search results
@@ -44,6 +44,7 @@ function run() {
     output['number_of_results'] = intString
     output['title_of_search_results'] = result[1]
     jsonfile.writeFile(file, output)
+    // console.log(result)
   })
   .catch(function (error) {
     console.error('Search failed:', error);
